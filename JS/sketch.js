@@ -25,30 +25,39 @@ fetch("https://api.thingspeak.com/channels/1322377/feed.json")
 // Build default table with all api data
 function buildTable(){
 
-var WaterLevelFiltered = TinyTimDataJSON.feeds.filter((x)=>x.field3 === "Water Level");
-WaterLevel = WaterLevelFiltered[WaterLevelFiltered.length-1].field4;
-WaterLevelDate = (new Date(WaterLevelFiltered[WaterLevelFiltered.length-1].field1)).toLocaleString();
-console.log(WaterLevel,WaterLevelDate);
+  var WaterLevelFiltered = TinyTimDataJSON.feeds.filter((x)=>x.field3 === "Water Level");
+  WaterLevel = WaterLevelFiltered[WaterLevelFiltered.length-1].field4;
+  WaterLevelDate = (new Date(WaterLevelFiltered[WaterLevelFiltered.length-1].field1)).toLocaleString();
+  console.log(WaterLevel,WaterLevelDate);
 
-var TemperatureFiltered = TinyTimDataJSON.feeds.filter((x)=>x.field3 === "Temperature");
-Temperature = TemperatureFiltered[TemperatureFiltered.length-1].field4;
-TemperatureDate = (new Date(TemperatureFiltered[TemperatureFiltered.length-1].field1)).toLocaleString();
-console.log(Temperature,TemperatureDate);
+  var TemperatureFiltered = TinyTimDataJSON.feeds.filter((x)=>x.field3 === "Temperature");
+  Temperature = TemperatureFiltered[TemperatureFiltered.length-1].field4;
+  TemperatureDate = (new Date(TemperatureFiltered[TemperatureFiltered.length-1].field1)).toLocaleString();
+  console.log(Temperature,TemperatureDate);
 
-window.onload = (event) => {
-  document.getElementById("Variables").innerHTML = "Water Level: " + WaterLevel + "%" + " " + "Temperature: " + Temperature +"°C" ;
-};
+  window.onload = (event) => {
+    document.getElementById("WaterLevel").innerHTML = "Water Level: " + WaterLevel + "%";
+    document.getElementById("Temperature").innerHTML = "Temperature: " + Temperature +"°C" ;
+  };
 
-var $table1 = $('#upcomingAutoTable')
+  var $table1 = $('#upcomingAutoTable')
+  var scheduled = TinyTimDataJSON.feeds.filter((x)=>x.field2 === "Scheduled");
+  var upcoming = scheduled.filter(function (product) {
+  var date = new Date(product.field5);
+    return (date >= Date()).toLocaleString();
+  });
+    $(function() {
+      $table1.bootstrapTable({data: scheduled.slice(scheduled.length-6, scheduled.length-1) })
+    })
 
+  var $table2 = $('#recentAutoTable')
+  var triggeredScheduled = TinyTimDataJSON.feeds.filter((x)=>x.field2 === "Scheduled" || x.field2 === "Triggered");
+  var recent = triggeredScheduled.filter(function (product) {
+  var date = new Date(product.field6);
+    return (date <= Date()).toLocaleString();
+  });
   $(function() {
-    $table1.bootstrapTable({data: TinyTimDataJSON.feeds})
-  })
-
-var $table2 = $('#recentAutoTable')
-
-  $(function() {
-    $table2.bootstrapTable({data: TinyTimDataJSON.feeds})
+    $table2.bootstrapTable({data: recent[recent.length-1]})
   })
 
 }
@@ -77,19 +86,22 @@ function toggleView() {
     for (i = 0; i < document.getElementsByClassName("view").length; i++) {
       document.getElementsByClassName("view")[i].style.visibility = "hidden";
     }
+      document.getElementsByClassName("viewHidden")[0].style.visibility = "visible";
 
     viewState = !viewState;
 
   } else {
-    
+
     console.log("Show");
 
     //Show Elements
     for (i = 0; i < document.getElementsByClassName("view").length; i++) {
       document.getElementsByClassName("view")[i].style.visibility = "visible";
     }
+    document.getElementsByClassName("viewHidden")[0].style.visibility = "hidden";
 
     viewState = !viewState;
   }
+
 
 }

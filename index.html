@@ -4,11 +4,16 @@
 <head>
 
   <!-- Meta Data -->
-  <title>Project Title</title>
-  <meta name="description" content="Description of project.">
+  <title>Tiny-Tim's Tank</title>
+  <meta name="description" content="The automated world of a fish. Bringing the best of automation services, logic and process to deliver a fun, functional and care-free life for Tiny Tim.">
   <meta name="author" content="Jake Warren">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:title" content="Tiny-Tim's Tank" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jakedwarren.github.io/Tiny-Tim/" />
+  <meta property="og:image" content="Assets\Tiny-Tim's Tank.png" />
+  <meta property="og:description" content="The automated world of a fish. Bringing the best of automation services, logic and process to deliver a fun, functional and care-free life for Tiny Tim." />
 
   <!-- Stylesheets -->
   <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
@@ -26,41 +31,46 @@
 <body>
 
   <!-- Tiny-Tim's Tank Live Stream -->
-  <div class="liveStream">
-    <iframe
-      src="https://www.youtube.com/embed/JW5meKfy3fY?modestbranding=1&autohide=1&showinfo=0&controls=0&autoplay=1"
-      frameborder="0"
-      allowfullscreen
-    ></iframe>
+  <div class="video-background">
+    <div class="video-foreground">
+      <iframe src="https://www.youtube.com/embed/live_stream?channel=UCMbwSVL8zavXLeoO5gq86iw&controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1" frameborder="0" allowfullscreen></iframe>
+    </div>
   </div>
 
+
   <!-- Landing/Home Section -->
-  <section class="home d-flex flex-column justify-content-stretch " id="Home">
+  <section class="home d-flex flex-column justify-content-stretch" id="Home">
 
     <div class="topBar d-flex justify-content-between p-1">
 
-      <img class="view" src="Assets\Tiny-Tim's Tank Logo Text.png" alt="Tiny-Tim's Tank Small Text Logo">
-      <img class="view"src="Assets\Tiny-Tim Border.png" alt="Tiny-Tim's Tank Small Text Logo">
-      <div id="Variables" class="d-flex view"></div>
+      <img class="p-3" src="Assets\Tiny-Tim.png" alt="Tiny-Tim's Tank Fish Logo">
+
+      <div class="d-flex flex-column liveLogo">
+        <div class="live">Live</div>
+        <img class="viewHidden pb-5"src="Assets\Tiny-Tim's Tank Logo Text.png" alt="Tiny-Tim's Tank Small Text Logo">
+      </div>
+
       <div class="hideBox" onclick="toggleView()" ></div>
+
     </div>
 
-    <div class="d-flex justify-content-start mainContent w-100 p-1 view">
+    <div class="d-flex justify-content-start mainContent w-100 p-1 view ">
 
-        <div class="d-flex flex-column w-75 h-100p-1">
+        <div class="d-flex flex-column justify-content-between w-75 h-100p-1">
 
           <div class="d-flex w-100 h-75 p-1">
-          <img src="Assets\Tiny-Tim's Tank Logo Fish.png" alt="Tiny-Tim's Tank Main Logo">
+          <img class="mainLogo pl-5" src="Assets\TTT Main Logo.png" alt="Tiny-Tim's Tank Main Logo">
           </div>
 
-          <div class="d-flex justify-content-start align-self-end w-100 h-25 p-3 flex-column">
-            <div class="upcomingAutoTable">
-              <table id="upcomingAutoTable">
+          <div class="d-flex justify-content-end w-75 p-3 flex-column">
+            <div class="recentAutoTable h-100">
+              <table class="table borderless" id="recentAutoTable">
                 <thead
                   <tr>
-                    <th data-field="field1">ID</th>
-                    <th data-field="field2">Item Name</th>
-                    <th data-field="field3">Item Price</th>
+                    <th data-field="field2">Type</th>
+                    <th class="w-50" data-field="field3">Event</th>
+                    <th data-field="field5">Start Time</th>
+                    <th data-field="field6">End Time</th>
                   </tr>
                 </thead>
               </table>
@@ -69,15 +79,19 @@
 
         </div>
 
-        <div class="d-flex justify-content-end align-self-end  p-3 w-25 h-75">
+        <div class="d-flex justify-content-between align-content-end flex-column p-3 h-100 w-25 ">
 
-          <div class="recentAutoTable">
-            <table id="recentAutoTable">
+          <div id="WaterLevel" class="d-flex p-3 align-self-end waterLevel"></div>
+
+          <div id="Temperature" class="d-flex p-3 align-self-end temperature"></div>
+
+          <div class="upcomingAutoTable align-self-end h-75 w-750">
+            <table class="table borderless" id="upcomingAutoTable">
               <thead>
                 <tr>
-                  <th data-field="field1">ID</th>
-                  <th data-field="field2">Item Name</th>
-                  <th data-field="field3">Item Price</th>
+                  <th class="w-50" data-field="field3">Event</th>
+                  <th class="w-25" data-field="field5">Start Time</th>
+                  <th class="w-25" data-field="field6">End Time</th>
                 </tr>
               </thead>
             </table>
