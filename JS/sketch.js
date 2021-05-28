@@ -4,9 +4,10 @@ var WaterLevelDate;
 var Temperature;
 var TemperatureDate;
 var viewState = 0;
+var todaysDate = new Date(Date());
 
 // The URL is sent to the loadJSON that returns the data to the variable
-fetch("https://api.thingspeak.com/channels/1322377/feed.json")
+fetch("https://api.thingspeak.com/channels/1322377/feeds.json?results=10000")
 .then(function (response) {
   return response.json();
 })
@@ -42,38 +43,21 @@ function buildTable(){
 
   var $table1 = $('#upcomingAutoTable')
   var scheduled = TinyTimDataJSON.feeds.filter((x)=>x.field2 === "Scheduled");
-  var upcoming = scheduled.filter(function (product) {
-  var date = new Date(product.field5);
-    return (date >= Date()).toLocaleString();
-  });
+  var upcoming = scheduled.filter((x)=> new Date(x.field7) > todaysDate );
     $(function() {
-      $table1.bootstrapTable({data: scheduled.slice(scheduled.length-6, scheduled.length-1) })
+      $table1.bootstrapTable({data: upcoming.slice(0, 10) })
     })
 
   var $table2 = $('#recentAutoTable')
+
+
   var triggeredScheduled = TinyTimDataJSON.feeds.filter((x)=>x.field2 === "Scheduled" || x.field2 === "Triggered");
-  var recent = triggeredScheduled.filter(function (product) {
-  var date = new Date(product.field6);
-    return (date <= Date()).toLocaleString();
-  });
+  var recent = triggeredScheduled.filter((x)=> new Date(x.field8) < todaysDate );
+
   $(function() {
-    $table2.bootstrapTable({data: recent[recent.length-1]})
+    $table2.bootstrapTable({data: recent.slice(recent.length-1, recent.length )})
   })
 
-}
-
-function formatDate(date) {
-    var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-
-    if (month.length < 2)
-        month = '0' + month;
-    if (day.length < 2)
-        day = '0' + day;
-
-    return [year, month, day].join('-');
 }
 
 function toggleView() {

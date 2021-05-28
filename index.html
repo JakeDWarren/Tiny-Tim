@@ -56,7 +56,7 @@
 
     <div class="d-flex justify-content-start mainContent w-100 p-1 view ">
 
-        <div class="d-flex flex-column justify-content-between w-75 h-100p-1">
+        <div class="d-flex flex-column justify-content-between w-75 h-100 p-1">
 
           <div class="d-flex w-100 h-75 p-1">
           <img class="mainLogo pl-5" src="Assets\TTT Main Logo.png" alt="Tiny-Tim's Tank Main Logo">
@@ -64,13 +64,14 @@
 
           <div class="d-flex justify-content-end w-75 p-3 flex-column">
             <div class="recentAutoTable h-100">
+            <div class="pt-3 pb-2 h4 pl-4">Recent/Active:</div>
               <table class="table borderless" id="recentAutoTable">
                 <thead
                   <tr>
-                    <th data-field="field2">Type</th>
+                    <th class="pl-3"data-field="field2">Type</th>
                     <th class="w-50" data-field="field3">Event</th>
                     <th data-field="field5">Start Time</th>
-                    <th data-field="field6">End Time</th>
+                    <th class="pr-3" data-field="field6">End Time</th>
                   </tr>
                 </thead>
               </table>
@@ -85,13 +86,14 @@
 
           <div id="Temperature" class="d-flex p-3 align-self-end temperature"></div>
 
-          <div class="upcomingAutoTable align-self-end h-75 w-750">
+          <div class="upcomingAutoTable align-self-end h-75 w-100">
+          <div class="pt-3 pb-2 h4 pl-4">Today: </div>
             <table class="table borderless" id="upcomingAutoTable">
               <thead>
                 <tr>
-                  <th class="w-50" data-field="field3">Event</th>
+                  <th class="w-50 pl-3" data-field="field3">Event</th>
                   <th class="w-25" data-field="field5">Start Time</th>
-                  <th class="w-25" data-field="field6">End Time</th>
+                  <th class="w-25 pr-3" data-field="field6">End Time</th>
                 </tr>
               </thead>
             </table>

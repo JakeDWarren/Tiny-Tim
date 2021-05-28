@@ -102,6 +102,12 @@ table {
     border: none;
 }
 
+.th-inner {
+  padding: 0 !important;
+  padding-top: 0.4rem !important;
+  padding-bottom: 0.4rem !important;
+}
+
 .upcomingAutoTable{
   background-color: white;
   opacity: 70%;
