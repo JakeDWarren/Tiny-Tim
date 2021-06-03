@@ -38,10 +38,8 @@ function buildTable(){
   console.log(Temperature,TemperatureDate);
 
   // Add variables to html
-  // window.onload = (event) => {
     document.getElementById("WaterLevel").innerHTML = "Water Level: " + WaterLevel + "%";
     document.getElementById("Temperature").innerHTML = "Temperature: " + Temperature +"°C" ;
-  // };
 
   // Create the upcoming table
   var $table1 = $('#upcomingAutoTable')
