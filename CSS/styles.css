@@ -1,8 +1,3 @@
-/* Theme colours */
-:root {
-
-}
-
 /* Overall styling */
 html, body {
   display: flex;
@@ -18,16 +13,12 @@ html, body {
 
 }
 
-/* Live stream styling */
-/* .liveStream, iframe {
-  width: 100vw;
-  height: webkit
-  display: flex;
+.overlay{
   position: absolute;
-  justify-content: center;
-  align-self: center;
-
-} */
+  height: 100vh;
+  width: 100vw;
+  visibility: hidden;
+}
 
 /* Overall Home styling */
 .home {
@@ -115,7 +106,8 @@ table {
   box-shadow: 5px 10px 18px #888888;
   width:80%;
   height: 95%;
-  overflow: hidden;
+  overflow:auto;
+
 }
 
 .recentAutoTable{
@@ -123,18 +115,15 @@ table {
   opacity: 70%;
   border-radius: 25px;
   box-shadow: 5px 10px 18px #888888;
-  height: 70%;
+  min-height: fit-content;
   overflow: hidden;
 }
 
-.waterLevel{
-  background-color: white;
-  opacity: 70%;
-  border-radius: 25px;
-  box-shadow: 5px 10px 18px #888888;
+::-webkit-scrollbar {
+    display: none;
 }
 
-.temperature{
+.textBox{
   background-color: white;
   opacity: 70%;
   border-radius: 25px;
@@ -172,4 +161,41 @@ table {
 }
 @media all and (max-width: 500px) {
 .vid-info .acronym { display: none; }
+}
+
+
+/* Modal Content */
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  overflow: scroll;; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+  /* max-height: 90%;
+  width: inher; /* Could be more or less, depending on screen size */ */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
